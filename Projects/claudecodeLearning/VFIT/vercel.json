@@ -1,0 +1,6 @@
+{
+  "buildCommand": "npx vite build",
+  "devCommand": "vite --port $PORT",
+  "outputDirectory": "dist",
+  "framework": "vite"
+}

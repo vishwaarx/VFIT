@@ -1,0 +1,210 @@
+@import "tailwindcss";
+
+/* ─── Dark Theme (default) ─── */
+@theme {
+  /* Background & surfaces — solid card-based design */
+  --color-bg: #0A0A0A;
+  --color-surface: #141414;
+  --color-card: #1A1A1A;
+  --color-card-solid: #1A1A1A;
+  --color-card-hover: #222222;
+  --color-card-elevated: #242424;
+  --color-border: #2A2A2A;
+  --color-border-subtle: #222222;
+  --color-border-strong: #3A3A3A;
+
+  /* Brand accent with glow system */
+  --color-accent: #FF4500;
+  --color-accent-hover: #FF5722;
+  --color-accent-muted: rgba(255, 69, 0, 0.12);
+  --color-accent-glow: rgba(255, 69, 0, 0.25);
+  --color-accent-subtle: rgba(255, 69, 0, 0.06);
+  --color-accent-soft: rgba(255, 69, 0, 0.13);
+
+  /* Text hierarchy */
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #8A8A8A;
+  --color-text-tertiary: #6A6A6A;
+  --color-text-muted: #525252;
+
+  /* Status colors */
+  --color-success: #32D74B;
+  --color-success-muted: rgba(50, 215, 75, 0.12);
+  --color-warning: #FFD60A;
+  --color-warning-muted: rgba(255, 214, 10, 0.12);
+  --color-error: #FF453A;
+  --color-error-muted: rgba(255, 69, 58, 0.12);
+  --color-pr-gold: #F59E0B;
+  --color-pr-gold-glow: rgba(245, 158, 11, 0.3);
+
+  /* Typography — Sora (display) + Inter (body) */
+  --font-display: 'Sora', system-ui, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* ─── Light Theme overrides ─── */
+html.light {
+  --color-bg: #F5F7FA;
+  --color-surface: #FFFFFF;
+  --color-card: #FFFFFF;
+  --color-card-solid: #FFFFFF;
+  --color-card-hover: #F0F0F0;
+  --color-card-elevated: #FFFFFF;
+  --color-border: #E5E5E5;
+  --color-border-subtle: #EEEEEE;
+  --color-border-strong: #D4D4D4;
+
+  --color-accent: #E83E00;
+  --color-accent-hover: #D63600;
+  --color-accent-muted: rgba(232, 62, 0, 0.10);
+  --color-accent-glow: rgba(232, 62, 0, 0.15);
+  --color-accent-subtle: rgba(232, 62, 0, 0.04);
+  --color-accent-soft: rgba(232, 62, 0, 0.08);
+
+  --color-text-primary: #0F172A;
+  --color-text-secondary: #475569;
+  --color-text-tertiary: #64748B;
+  --color-text-muted: #94A3B8;
+
+  --color-success: #16A34A;
+  --color-success-muted: rgba(22, 163, 74, 0.10);
+  --color-warning: #D97706;
+  --color-warning-muted: rgba(217, 119, 6, 0.10);
+  --color-error: #DC2626;
+  --color-error-muted: rgba(220, 38, 38, 0.10);
+  --color-pr-gold: #D97706;
+  --color-pr-gold-glow: rgba(217, 119, 6, 0.15);
+
+  color-scheme: light;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  color-scheme: dark;
+}
+
+html.light, html.light body {
+  color-scheme: light;
+}
+
+/* Safe area padding for standalone PWA */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .safe-top { padding-top: env(safe-area-inset-top); }
+  .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+}
+
+/* ─── Card styles (replaces glass morphism with solid cards + borders) ─── */
+.glass {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+}
+
+html.light .glass {
+  background: var(--color-card);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.glass-elevated {
+  background: var(--color-card-elevated);
+  border: 1px solid var(--color-border);
+}
+
+html.light .glass-elevated {
+  background: var(--color-card-elevated);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+/* ─── Accent glow ─── */
+.glow-accent {
+  box-shadow: 0 0 20px var(--color-accent-glow), 0 0 60px rgba(255, 69, 0, 0.08);
+}
+
+html.light .glow-accent {
+  box-shadow: 0 4px 16px var(--color-accent-glow);
+}
+
+.glow-gold {
+  box-shadow: 0 0 20px var(--color-pr-gold-glow), 0 0 60px rgba(245, 158, 11, 0.08);
+}
+
+html.light .glow-gold {
+  box-shadow: 0 4px 16px var(--color-pr-gold-glow);
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 2px; }
+
+/* Numeric inputs */
+input[inputmode="decimal"],
+input[inputmode="numeric"] {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─── Theme-aware subtle backgrounds ─── */
+.bg-subtle {
+  background: #141414;
+}
+.bg-subtle-hover {
+  background: #1A1A1A;
+}
+.bg-input {
+  background: #141414;
+}
+
+html.light .bg-subtle {
+  background: rgba(0, 0, 0, 0.02);
+}
+html.light .bg-subtle-hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+html.light .bg-input {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+/* Light mode input styling */
+html.light input,
+html.light textarea {
+  color: var(--color-text-primary);
+}
+
+html.light input::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* Gradient text utility */
+.text-gradient-accent {
+  background: linear-gradient(135deg, #FF4500, #FF6B35);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+html.light .text-gradient-accent {
+  background: linear-gradient(135deg, #E83E00, #F05A28);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
